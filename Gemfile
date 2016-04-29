@@ -47,4 +47,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'execjs'
-
+gem 'jquery-ui-rails'
+gem 'jquery-turbolinks'
