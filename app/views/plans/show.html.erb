@@ -5,5 +5,19 @@
   <%= @plan.name %>
 </p>
 
+
+<div id="accordion"> 
+<% @plan.terms.each do |term| %>
+  <h3><%=  term.semester %> <%=  term.year.to_s %></h3>      
+  <div>
+      <%term.courses.each do |course| %>
+        <p> <%=course.name %> </p>
+      <% end %>
+  </div>
+        
+<% end %>
+</div>
+
+
 <%= link_to 'Edit', edit_plan_path(@plan) %> |
 <%= link_to 'Back', plans_path %>

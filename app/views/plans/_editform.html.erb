@@ -21,3 +21,23 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Terms</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+     <% @plan.terms.each do |term|  %>
+      <tr>
+        <td><%= term.semester %> <%= term.year.to_s %></td>
+        
+      </tr>
+    <% end %>  
+  </tbody>
+</table>
+
