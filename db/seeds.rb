@@ -64,13 +64,13 @@ music = Course.new
 music.name = "music"
 music.save!
 
-tc1 = TermCourse.new
-tc1.course_id = math.id 
-tc1.term_id = u1t1.id
-tc1.save!
+#tc1 = TermCourse.new
+#tc1.course_id = math.id 
+#tc1.term_id = u1t1.id
+#tc1.save!
 
-tc2 = TermCourse.new
-tc2.course_id = science.id
-tc2.term_id = u1t1.id
-tc2.save!
+#tc2 = TermCourse.new
+#tc2.course_id = science.id
+#tc2.term_id = u1t1.id
+#tc2.save!
 

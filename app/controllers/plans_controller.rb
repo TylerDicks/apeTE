@@ -5,36 +5,47 @@ class PlansController < ApplicationController
   # GET /plans
   # GET /plans.json
   def index
-    
     #@plans = Plan.all
     if defined?(current_user)
       if defined?(current_user.id) && current_user.id != ""
         @plans =  Plan.where(user_id: current_user.id)
       end
     end
-    
-  end
-
+  end 
+  
   # GET /plans/1
   # GET /plans/1.json
   def show
+    @plan = Plan.find(params[:id])
+    #@terms = Term.all
+    #@TC = TermCourse.all
+    #@courses = Course.all
   end
 
   # GET /plans/new
   def new
     @plan = Plan.new
+    @plan.terms.build
+    
   end
 
   # GET /plans/1/edit
   def edit
+    @plan = Plan.find(params[:id])
+    @plan.terms.build
+    #@terms = Term.all
+    #@TC = TermCourse.all
+    #@courses = Course.al
   end
 
   # POST /plans
   # POST /plans.json
   def create
     @plan = Plan.new(plan_params)
+    @plan.user_id = current_user.id
+    3.times{ @plan.terms.build(plan_id: current_user.id, year:0, semester:"") }
+    @plan.save
     
-
     respond_to do |format|
       if @plan.save
         format.html { redirect_to @plan, notice: 'Plan was successfully created.' }
@@ -78,6 +89,6 @@ class PlansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plan_params
-      params.require(:plan).permit(:name, :user_id)
+      params.require(:plan).permit(:name, :user_id, :year, :semester)
     end
 end

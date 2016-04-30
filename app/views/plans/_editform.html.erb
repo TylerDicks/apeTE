@@ -16,28 +16,18 @@
     <%= f.text_field :name %>
   </div>
   
+  <%= f.fields_for :terms do |builder| %>
+    <p>
+      <%= builder.label :year, "Term Year" %><br>
+      <%= builder.text_field :year %><br>
+      
+      <%= builder.label :semester, "Term Semester" %><br>
+      <%= builder.text_field :semester %><br><br>
+    </p>
+  <%  end %>  
   
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "sumbit" %>
   </div>
 <% end %>
-
-
-<table>
-  <thead>
-    <tr>
-      <th>Terms</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-     <% @plan.terms.each do |term|  %>
-      <tr>
-        <td><%= term.semester %> <%= term.year.to_s %></td>
-        
-      </tr>
-    <% end %>  
-  </tbody>
-</table>
 
