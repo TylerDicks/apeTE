@@ -1,0 +1,16 @@
+<div>
+  <%= f.label :year, "Term Year" %><br>
+  <%= f.text_field :year %><br>
+
+  <%= f.label :semester, "Term Semester" %><br>
+  <%= f.text_field :semester %><br>
+
+  <%= f.check_box :_destroy %>
+  <%= f.label :_destroy, "Remove Term" %><br>
+</div>
+
+<%= fields_for :term_courses do |builder| %>
+  <%= render 'course_fields', :f => builder  %>
+<% end %>
+
+<br>

@@ -12,6 +12,9 @@
   <div>
       <%term.courses.each do |course| %>
         <p> <%=course.name %> </p>
+        <%term.courses.term_courses.each do |term_course| %>
+          <p> <%=  term_course.course.name %> </p>
+        <% end %>
       <% end %>
   </div>
         

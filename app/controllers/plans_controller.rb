@@ -25,14 +25,17 @@ class PlansController < ApplicationController
   # GET /plans/new
   def new
     @plan = Plan.new
-    @plan.terms.build
+    3.times do
+      @plan.terms.build
+      @plan.terms.term_courses.build
+    end
     
   end
 
   # GET /plans/1/edit
   def edit
     @plan = Plan.find(params[:id])
-    @plan.terms.build
+    #@plan.terms.build
     #@terms = Term.all
     #@TC = TermCourse.all
     #@courses = Course.al
@@ -43,8 +46,6 @@ class PlansController < ApplicationController
   def create
     @plan = Plan.new(plan_params)
     @plan.user_id = current_user.id
-    3.times{ @plan.terms.build(plan_id: current_user.id, year:0, semester:"") }
-    @plan.save
     
     respond_to do |format|
       if @plan.save
@@ -88,7 +89,7 @@ class PlansController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def plan_params
-      params.require(:plan).permit(:name, :user_id, :year, :semester)
+    def plan_params 
+      params.require(:plan).permit(:name, :user_id, terms_attributes: [:id, :year, :semester, :_destroy], term_courses_attributes: [:id, :course_id, :_destroy ])
     end
 end
