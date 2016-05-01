@@ -15,10 +15,30 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  
-  <%= f.fields_for :terms do |builder| %>
-    <%= render 'term_fields', :f => builder  %>
-  <%  end %>  
+
+    <%= f.fields_for :terms do |ff| %>
+      <div>
+        <%= ff.label :year, "Term Year" %><br>
+        <%= ff.text_field :year %><br>
+
+        <%= ff.label :semester, "Term Semester" %><br>
+        <%= ff.text_field :semester %><br>
+
+        <%= ff.check_box :_destroy %>
+        <%= ff.label :_destroy, "Remove Term" %><br>
+      </div>
+        <%= fields_for :term_course do |fff| %>
+          <div>
+            <%= fff.label :course_id, "Course" %><br>
+            <%= fff.collection_select :course_id, Course.all, :id, :name  %><br>
+
+
+            <%= fff.check_box :_destroy %>
+            <%= fff.label :_destroy, "Remove Course" %><br>
+          </div>
+        <% end %>
+      <br>
+    <%  end %>  
     
   <div class="actions">
     <%= f.submit %>

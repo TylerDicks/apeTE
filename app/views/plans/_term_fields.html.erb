@@ -8,9 +8,9 @@
   <%= f.check_box :_destroy %>
   <%= f.label :_destroy, "Remove Term" %><br>
 </div>
-
-<%= fields_for :term_courses do |builder| %>
-  <%= render 'course_fields', :f => builder  %>
-<% end %>
-
+<% tid.term_course.each do |tc| -%>
+  <%= fields_for :term_course, tc do |builder| %>
+    <%= render 'course_fields', :f => builder, :t => tid %>
+  <% end %>
+<% end -%>
 <br>

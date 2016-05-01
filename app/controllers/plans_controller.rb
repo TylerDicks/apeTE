@@ -26,8 +26,8 @@ class PlansController < ApplicationController
   def new
     @plan = Plan.new
     3.times do
-      @plan.terms.build
-      @plan.terms.term_courses.build
+      term = @plan.terms.build
+      term.term_courses.build
     end
     
   end
@@ -90,6 +90,9 @@ class PlansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plan_params 
-      params.require(:plan).permit(:name, :user_id, terms_attributes: [:id, :year, :semester, :_destroy], term_courses_attributes: [:id, :course_id, :_destroy ])
+      params.require(:plan).permit(:name, :user_id, 
+        :terms_attributes => [:id, :year, :semester, :_destroy, 
+         :term_courses_attributes => [:id, :course_id, :term_id, :_destroy ] ]
+        )
     end
 end

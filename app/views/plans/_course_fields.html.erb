@@ -1,7 +1,9 @@
 <div>
-  <%= f.label :semester, "Course" %><br>
+  <%= f.label :course_id, "Course" %><br>
   <%= f.collection_select :course_id, Course.all, :id, :name  %><br>
 
+  <%= f.hidden_field :term_id, :value => t.id %>
+    
   <%= f.check_box :_destroy %>
   <%= f.label :_destroy, "Remove Course" %><br>
 </div>
